@@ -126,7 +126,6 @@ do
             }
             Console.WriteLine("\n\rPress the Enter key to continue");
             readResult = Console.ReadLine();
-
             break;
 
         case "2":
@@ -231,7 +230,6 @@ do
                     }
                 } while (validEntry == false);
 
-
                 // get the pet's nickname. animalNickname can be blank.
                 do
                 {
@@ -270,7 +268,6 @@ do
                         {
                             anotherPet = readResult.ToLower();
                         }
-
                     } while (anotherPet != "y" && anotherPet != "n");
                 }
                 //NOTE: The value of anotherPet (either "y" or "n") is evaluated in the while statement expression - at the top of the while loop
@@ -287,11 +284,33 @@ do
 
         case "3":
             // Ensure animal ages and physical descriptions are complete
-            Console.WriteLine("Challenge Project - please check back soon to see progress.");
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    if (ourAnimals[i, 2] == "Age: ?")
+                    {
+                        do
+                        {
+                            Console.WriteLine($"Enter an age for {ourAnimals[i, 0]}");
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                animalAge = readResult;
+                                validEntry = int.TryParse(animalAge, out petAge);
+                            }
+                            else
+                            {
+                                validEntry = true;
+                            }
+                        } while (validEntry == false);
+                        ourAnimals[i, 2] = "Age: " + animalAge;
+                    }
+                }
+            }
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
-
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
             Console.WriteLine("Challenge Project - please check back soon to see progress.");
