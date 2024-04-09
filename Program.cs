@@ -11,7 +11,6 @@ string animalNickname = "";
 
 // variables that support data entry
 int maxPets = 8;
-string myString = "";
 string? readResult;
 string menuSelection = "";
 int petCount = 0;
@@ -357,21 +356,24 @@ do
 
                         }
                     } while (validEntry == false);
+
                     ourAnimals[i, 3] = "Nickname " + animalNickname;
+
                 }
 
                 if (ourAnimals[i, 5] == "Personality " && ourAnimals[i, 0] != "ID #: ")
                 {
                     do
                     {
+                        //"Enter a description of the pet's personality (likes or dislikes, tricks, energy level"
                         Console.WriteLine($"Enter a personality description for {ourAnimals[i, 0]} (likes or dislikes, tricks, energy level))");
                         readResult = Console.ReadLine();
                         if (readResult != null)
                         {
                             animalPersonalityDescription = readResult.ToLower();
-                            if (animalPersonalityDescription != null)
+                            if (animalPersonalityDescription == "")
                             {
-                                validEntry = !string.IsNullOrEmpty(animalPersonalityDescription);
+                                validEntry = false;
                             }
                             else
                             {
