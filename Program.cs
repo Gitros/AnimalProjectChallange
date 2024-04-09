@@ -11,6 +11,7 @@ string animalNickname = "";
 
 // variables that support data entry
 int maxPets = 8;
+string myString = "";
 string? readResult;
 string menuSelection = "";
 int petCount = 0;
@@ -304,10 +305,34 @@ do
                                 validEntry = true;
                             }
                         } while (validEntry == false);
+
                         ourAnimals[i, 2] = "Age: " + animalAge;
+                    }
+
+                    if (ourAnimals[i, 4] == "Physical description: ")
+                    {
+                        do
+                        {
+                            Console.WriteLine($"Enter a physical description for {ourAnimals[i, 0]} (size, color, breed, gender, weight, housebroken)");
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                animalPhysicalDescription = readResult.ToLower();
+                                if (animalPhysicalDescription != null)
+                                {
+                                    validEntry = !string.IsNullOrEmpty(animalPhysicalDescription);
+                                }
+                                else
+                                {
+                                    validEntry = true;
+                                }
+                            }
+                        } while (validEntry == false);
+                        ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
                     }
                 }
             }
+            Console.WriteLine("\nAge and physical description fields are complete for all of our friends.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
